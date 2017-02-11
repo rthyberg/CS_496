@@ -16,6 +16,13 @@ import webapp2
 from google.appengine.api import urlfetch
 import urllib
 import json
+import random
+state = "No-State-Set"
+
+# This code was taken from stack overflow
+def generate_nonce(length=8): # http://stackoverflow.com/questions/5590170/what-is-the-standard-method-for-generating-a-nonce-in-python
+    """Generate pseudorandom number."""
+    return ''.join([str(random.randint(0, 9)) for i in range(length)])
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
@@ -24,6 +31,7 @@ class MainPage(webapp2.RequestHandler):
 
 class AuthRedirect(webapp2.RequestHandler):
     def get(self):
+        global state
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.write('You are about to be redirected to authorize thru google"')
         url = "https://accounts.google.com/o/oauth2/v2/auth?"
@@ -32,7 +40,7 @@ class AuthRedirect(webapp2.RequestHandler):
         client_secret = "uVm9VSCtG8-ZOU_RfJ7NaVGL"
 	redirecturl = "https://oauth-158308.appspot.com/oauth"
 	scope = "email"
-	state = "420bb"
+	state = generate_nonce()
         myurl = (url+"response_type=" + response\
 				+ "&client_id=" + client_id\
 				+ "&redirect_uri=" +redirecturl\
@@ -42,28 +50,36 @@ class AuthRedirect(webapp2.RequestHandler):
 
 class OAuth(webapp2.RequestHandler):
     def get(self):
+        global state
         code = self.request.get('code')
 	secret = self.request.get('state')
-	form_data = {"code": code,
+        if state == secret:
+            form_data = {"code": code,
 			"client_id":"931207409604-i21kqk9t2ahbkjagc8qe93r1gbte1sgd.apps.googleusercontent.com",
 			"client_secret":"uVm9VSCtG8-ZOU_RfJ7NaVGL",
 			"redirect_uri":"https://oauth-158308.appspot.com/oauth",
 			"grant_type":"authorization_code"}
-	encoded = urllib.urlencode(form_data)
-	headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-	result = urlfetch.fetch(
+            encoded = urllib.urlencode(form_data)
+            headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+            result = urlfetch.fetch(
 		url='https://www.googleapis.com/oauth2/v4/token',
                 payload=encoded,
                 method=urlfetch.POST,
                 headers=headers)
-        googleList = json.loads(result.content)
-        token = googleList['access_token']
-        info = urlfetch.fetch(
+            googleList = json.loads(result.content)
+            token = googleList['access_token']
+            info = urlfetch.fetch(
                 url="https://www.googleapis.com/plus/v1/people/me",
                 method=urlfetch.GET,
                 headers = {'Authorization':'Bearer ' + token}
-        )
-	self.response.write(info.content)
+            )
+            googleData = json.loads(info.content)
+            data = "stateVar : " + secret \
+                    + "\ndisplayName: " + googleData['displayName'] \
+                    + "\ng+ url: " + googleData['url']
+            self.response.write(data)
+        else:
+            self.response.write("Wrong secret")
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
