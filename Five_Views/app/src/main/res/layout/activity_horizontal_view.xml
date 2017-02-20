@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="100dip"
+    tools:context=".MainActivity" >
+
+    <HorizontalScrollView
+        android:id="@+id/hsv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:measureAllChildren="false"
+        android:scrollbars="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/activity_main"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item1"
+                android:id="@+id/hori1"
+                android:layout_margin="5dp"
+                android:textSize="45sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/colorTextPrimaryLight" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item2"
+                android:id="@+id/hori2"
+                android:layout_margin="5dp"
+                android:textSize="45sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/colorTextPrimaryLight" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item3"
+                android:id="@+id/hori3"
+                android:layout_margin="5dp"
+                android:textSize="45sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/colorTextPrimaryLight" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item4"
+                android:id="@+id/hori4"
+                android:layout_margin="5dp"
+                android:textSize="45sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/colorTextPrimaryLight" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item5"
+                android:id="@+id/hori5"
+                android:layout_margin="5dp"
+                android:textSize="45sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="@color/colorTextPrimaryLight" />
+            </LinearLayout>
+    </HorizontalScrollView>
+    </RelativeLayout>

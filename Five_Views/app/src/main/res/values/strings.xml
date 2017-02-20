@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Five_Views</string>
+    <string name="list">List View</string>
+    <string name="grid">Grid View</string>
+    <string name="hori">Horizontal View</string>
+    <string name="rela">Relative View</string>
+    <string name="item1">Item 1</string>
+    <string name="item2">Item 2</string>
+    <string name="item3">Item 3</string>
+    <string name="item4">Item 4</string>
+    <string name="item5">Item 5</string>
+</resources>
