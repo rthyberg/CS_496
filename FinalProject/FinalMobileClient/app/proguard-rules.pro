@@ -1,6 +1,6 @@
 # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
-# in /home/thymaster/Android/Sdk/tools/proguard/proguard-android.txt
+# in ${sdk.dir}/tools/proguard/proguard-android.txt
 # You can edit the include path and order by changing the proguardFiles
 # directive in build.gradle.
 #
@@ -16,10 +16,22 @@
 #   public *;
 #}
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+-keepattributes Signature
+-keepattributes *Annotation*
+-keepattributes EnclosingMethod
+-keepattributes InnerClasses
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Required for Twitter Authentication
+# https://docs.fabric.io/android/twitter/twitter.html#set-up-kit
+-dontwarn com.squareup.okhttp.**
+-dontwarn com.google.appengine.api.urlfetch.**
+-dontwarn rx.**
+-dontwarn retrofit.**
+-dontwarn retrofit2.**
+-dontwarn okio.**
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
+-keep class retrofit.** { *; }
+-keepclasseswithmembers class * {
+    @retrofit.http.* <methods>;
+}

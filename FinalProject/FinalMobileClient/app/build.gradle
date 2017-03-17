@@ -2,33 +2,59 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion '25.0.2'
+
     defaultConfig {
         applicationId "com.example.thymaster.finalmobileclient"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders = [
-                'appAuthRedirectScheme' : 'com.example.thymaster.finalmobileclient'
-        ]
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+      abortOnError false
+    }
+
+    productFlavors {
+
+        // Build variant with minSdk 16 to include Facebook and FirebaseUI libraries.
+        minSdkJellybean {
+            minSdkVersion 16
+        }
+
+        // Build variant with minSdk 14, excludes Facebook and FirebaseUI libraries.
+        minSdkIcs {
+            minSdkVersion 14
+        }
+
+    }
+}
+
+configurations.all {
+    resolutionStrategy.force 'com.android.support:support-annotations:25.0.1'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'net.openid:appauth:0.5.1'
-    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:25.0.1'
+
+    // Firebase Authentication
+    compile 'com.google.firebase:firebase-auth:10.2.0'
+
+    // Google Sign In SDK (only required for Google Sign In)
+    compile 'com.google.android.gms:play-services-auth:10.2.0'
+    compile'com.squareup.okhttp3:okhttp:3.6.0'
+
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    androidTestCompile 'com.android.support.test:runner:0.5'
 }
+
+apply plugin: 'com.google.gms.google-services'
