@@ -64,5 +64,6 @@
     <string name="signout">Sign out</string>
     <string name="cont">Continue</string>
     <string name="pick">Pick</string>
+    <string name="nosignin">Skip log in</string>
 </resources>
 

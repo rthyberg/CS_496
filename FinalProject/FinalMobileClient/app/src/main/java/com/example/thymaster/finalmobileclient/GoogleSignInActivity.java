@@ -91,6 +91,7 @@ public class GoogleSignInActivity extends BaseActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
+        findViewById(R.id.nosignin_button).setOnClickListener(this);
 
         // [START config_signin]
         // Configure Google Sign In
@@ -247,12 +248,14 @@ public class GoogleSignInActivity extends BaseActivity implements
 
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+            findViewById(R.id.nosignin).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
         } else {
             mStatusTextView.setText(R.string.signed_out);
             mDetailTextView.setText(null);
 
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+            findViewById(R.id.nosignin).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         }
     }
@@ -271,6 +274,9 @@ public class GoogleSignInActivity extends BaseActivity implements
         if (i == R.id.sign_in_button) {
             signIn();
 
+        } else if (i == R.id.nosignin_button) {
+            Intent intent = new Intent(GoogleSignInActivity.this, MainActivity.class);
+            startActivity(intent);
         } else if (i == R.id.sign_out_button) {
             signOut();
         } else if (i == R.id.go_button) {

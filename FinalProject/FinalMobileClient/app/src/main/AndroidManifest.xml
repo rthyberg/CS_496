@@ -22,6 +22,8 @@
             android:name=".MainActivity"
             android:label="@string/pick"/>
         <activity android:name=".ListViewActivity"/>
+        <activity android:name=".ShowData"/>
+        <activity android:name=".UpdateData"/>
     </application>
 
 </manifest>

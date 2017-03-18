@@ -6,4 +6,5 @@
 .DS_Store
 /build
 /captures
-.externalNativeBuild
+
+service_account.json

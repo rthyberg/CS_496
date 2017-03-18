@@ -69,7 +69,7 @@ class UsersHandle(webapp2.RequestHandler):
              new_user = User(id=userData['userToken'], \
                              name=userData['name'] if 'name' in userData else None,\
                              beer=userData['beer'] if 'beer' in userData else None,\
-                             rating=userData['rating'] if 'rating' in userData else None,\
+                             rating=userData['rating'] if 'rating' in userData else 0,\
                              notes=userData['notes'] if 'notes' in userData else None
                             )
              new_bkey = new_user.put() # put into datastore

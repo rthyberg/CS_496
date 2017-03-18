@@ -41,14 +41,4 @@
         android:textSize="45sp"
         android:background="@color/colorPrimaryDark"
         android:textColor="@color/colorTextPrimaryLight" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/signout"
-        android:id="@+id/Layout4"
-        android:layout_margin="5dp"
-        android:textSize="45sp"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="@color/colorTextPrimaryLight" />
 </LinearLayout>

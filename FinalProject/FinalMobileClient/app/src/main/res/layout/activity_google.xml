@@ -49,13 +49,32 @@
         android:layout_weight="1"
         android:background="@color/grey_300">
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:id="@+id/nosignin"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="visible"
-            tools:visibility="gone" />
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                tools:visibility="gone" />
+        <Button
+            android:id="@+id/nosignin_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/nosignin"
+            android:theme="@style/ThemeOverlay.MyDarkButton" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/sign_out_and_disconnect"
